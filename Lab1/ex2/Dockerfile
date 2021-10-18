@@ -1,14 +1,13 @@
-FROM node:15.11.0-stretch
+FROM node:14.13.0-stretch
 
-WORKDIR /usr/src/app
+COPY package.json ./
 
-COPY ./package.json ./
 RUN npm install
- 
-COPY ./ ./
- 
+
+COPY server.js /usr/src/app/
+
 EXPOSE 8080
- 
-CMD ["npm", "start"]
+
+CMD ["node", "/usr/src/app/server.js"]
 
 
