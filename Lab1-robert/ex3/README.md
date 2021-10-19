@@ -15,6 +15,7 @@ docker volume create laborator1-db-persistent-volume
 
 # 4. Run in background a container for a db with specs
 ```docker
+<<<<<<< HEAD
 docker container run -d --name laborator1-db --mount source=init-db.sql,target=/docker-entrypoint-initdb.d/init-db.sql  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=books --network=laborator1-db-network -v laborator1-db-persistent-volume:/var/lib/postgresql/data postgres
 docker container inspect ${ID} // verify in config file if the specs are fine
 ```
@@ -24,5 +25,11 @@ docker container inspect ${ID} // verify in config file if the specs are fine
 docker container run -d --network=laborator1-db-network -e PGUSER=admin -e PGPASSWORD=admin -e PGDATABASE=books -e PGHOST=laborator1-db -e PGPORT=5432 --name laborator1-api -p 5555:80 api-laborator1-image
 docker container inspect api-laborator1-image
 ```
+=======
+docker container run -it -d --name laborator1db --mount source=init-db.sql,target=/docker-entrypoint-initdb.d/init-db.sql  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=books --network=laborator1-db-network -v laborator1-db-persisten-volume:/var/lib/postgresql/data postgres
+docker container inspect ${ID} // verify in config file if the specs are fine
+````
+# 5. Run in background a container for an app with specs and in the same network with the db
+>>>>>>> 8763626fb609bba70bfe83d0ff0876799d752bac
 
 
